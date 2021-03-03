@@ -3,7 +3,7 @@
 import rospy
 import textwrap
 
-from wrappers_ros.services import get_service, service_list
+from acrv_ros_wrappers.services import get_service, service_list
 
 
 def start_service(name):
@@ -26,10 +26,8 @@ if __name__ == "__main__":
                 width=80))
         for s in ['all'] + service_list():
             print("\t%s" % s)
-        print(
-            textwrap.fill(
-                "\nSelect multiple by separating names with a comma, or 'all' "
-                "for all services. For example:\n\t"
-                "rosrun wrappers_ros start_service _name:=refinenet,monocam",
-                width=80,
-                replace_whitespace=False))
+        print('\n%s\n\t%s' % (textwrap.fill(
+            "Select multiple by separating names with a comma, or 'all' "
+            "for all services. For example:",
+            width=80
+        ), "rosrun acrv_ros_wrappers start_service _name:=refinenet,monocam"))
