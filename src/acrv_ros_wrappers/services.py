@@ -1,11 +1,18 @@
-from .service import Service
+import importlib
+import re
 
-_services = [Service(name='refinenet')]
+_services = {'refinenet': '.refinenet.Refinenet'}
 
 
-def get_service(name):
-    return next((s for s in _services if s.name == name), None)
+def load_service(name, *args, **kwargs):
+    service_str = next((p for n, p in _services.items() if n == name), None)
+    if not service_str:
+        raise ValueError("Could not find a '%s' service to load. Please "
+                         "confirm the name." % name)
+    return getattr(
+        importlib.import_module('.refinenet', package='acrv_ros_wrappers'),
+        'Refinenet')(*args, **kwargs)
 
 
 def service_list():
-    return [s.name for s in _services]
+    return list(_services.keys())

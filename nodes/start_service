@@ -3,11 +3,13 @@
 import rospy
 import textwrap
 
-from acrv_ros_wrappers.services import get_service, service_list
+from acrv_ros_wrappers.services import load_service, service_list
 
 
 def start_service(name):
     print("Starting service '%s' ..." % name)
+    service = load_service(name)
+    print("Loaded a service with name '%s'" % service.name)
 
 
 if __name__ == "__main__":
