@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import rospy
+import sys
 import textwrap
 
 from acrv_ros_wrappers.services import load_service, service_list
@@ -13,14 +14,10 @@ def start_service(name):
 
 
 if __name__ == "__main__":
-    rospy.init_node('wrappers_services')
+    rospy.init_node('acrv_wrappers_services')
 
     names = rospy.get_param('~names', None)
-    if names:
-        names = names.split(',')
-        for s in (service_list() if 'all' in names else names):
-            start_service(s)
-    else:
+    if not names:
         print(
             textwrap.fill(
                 "No service names provided. Please use the 'names' param "
@@ -28,8 +25,15 @@ if __name__ == "__main__":
                 width=80))
         for s in ['all'] + service_list():
             print("\t%s" % s)
-        print('\n%s\n\t%s' % (textwrap.fill(
-            "Select multiple by separating names with a comma, or 'all' "
-            "for all services. For example:",
-            width=80
-        ), "rosrun acrv_ros_wrappers start_service _name:=refinenet,monocam"))
+        print(
+            '\n%s\n\t%s' %
+            (textwrap.fill(
+                "Select multiple by separating names with a comma, or 'all' "
+                "for all services. For example:",
+                width=80),
+             "rosrun acrv_ros_wrappers start_service _names:=refinenet,ggcnn"))
+        sys.exit(1)
+
+    names = names.split(',')
+    for s in (service_list() if 'all' in names else names):
+        start_service(s)
