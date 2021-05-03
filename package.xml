@@ -9,7 +9,7 @@
   <license>BSD</license>
 
     <!-- TODO update website when live! -->
-  <url type="website">https://roboticvision.org/legacy/best-of-acrv</url>
+  <url type="website">https://roboticvision.org/best-of-acrv</url>
   <url type="repository">https://github.com/best-of-acrv/acrv-ros-wrappers</url>
 
   <author email="b.talbot@qut.edu.au">Ben Talbot</author>
