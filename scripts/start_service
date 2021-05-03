@@ -16,6 +16,7 @@ def start_service(name):
 if __name__ == "__main__":
     rospy.init_node('acrv_wrappers_services')
 
+    # Pull in names, throwing an error if we didn't receive a list
     names = rospy.get_param('~names', None)
     if not names:
         print(
@@ -34,6 +35,8 @@ if __name__ == "__main__":
              "rosrun acrv_ros_wrappers start_service _names:=refinenet,ggcnn"))
         sys.exit(1)
 
+    # Process the names list, starting the services
     names = names.split(',')
     for s in (service_list() if 'all' in names else names):
         start_service(s)
+    rospy.spin()
