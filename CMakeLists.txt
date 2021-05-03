@@ -1,21 +1,25 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(acrv-ros-wrappers)
+project(acrv_ros_wrappers)
 
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  sensor_msgs
+  message_generation
+  )
 
 catkin_python_setup()
 
-## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(
+  FILES
+  refinenet.srv
+  )
 
-## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+generate_messages(
+  DEPENDENCIES
+  sensor_msgs
+  )
 
-catkin_package()
+catkin_package(
+  CATKIN_DEPENDS message_runtime
+  )

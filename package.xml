@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>acrv-ros-wrappers</name>
+  <name>acrv_ros_wrappers</name>
   <version>0.0.1</version>
   <description>The ROS wrappers for our Best of ACRV code repositories.</description>
 
@@ -15,6 +15,8 @@
   <author email="b.talbot@qut.edu.au">Ben Talbot</author>
 
   <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
 
   <export>
   </export>
