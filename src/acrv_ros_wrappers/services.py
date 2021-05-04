@@ -1,7 +1,7 @@
 import importlib
 import re
 
-_services = {'refinenet': '.refinenet.Refinenet'}
+_services = {'refinenet': '.refinenet.RefineNet'}
 
 
 def load_service(name, *args, **kwargs):
@@ -10,9 +10,10 @@ def load_service(name, *args, **kwargs):
         raise ValueError("Could not find a '%s' service to load. Please "
                          "confirm the name. Valid names are:\n\t%s" %
                          (name, ",".join(service_list())))
+    # TODO make this dynamic instead of hacked!
     return getattr(
         importlib.import_module('.refinenet', package='acrv_ros_wrappers'),
-        'Refinenet')(*args, **kwargs)
+        'RefineNet')(*args, **kwargs)
 
 
 def service_list():

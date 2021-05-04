@@ -12,7 +12,7 @@ catkin_python_setup()
 
 add_service_files(
   FILES
-  refinenet.srv
+  RefineNet.srv
   )
 
 generate_messages(
