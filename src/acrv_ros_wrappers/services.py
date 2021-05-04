@@ -10,10 +10,10 @@ def load_service(name, *args, **kwargs):
         raise ValueError("Could not find a '%s' service to load. Please "
                          "confirm the name. Valid names are:\n\t%s" %
                          (name, ",".join(service_list())))
-    # TODO make this dynamic instead of hacked!
     return getattr(
-        importlib.import_module('.refinenet', package='acrv_ros_wrappers'),
-        'RefineNet')(*args, **kwargs)
+        importlib.import_module(re.sub(r'(.*)\..*', r'\1', service_str),
+                                package='acrv_ros_wrappers'),
+        service_str.split('.')[-1])(*args, **kwargs)
 
 
 def service_list():
