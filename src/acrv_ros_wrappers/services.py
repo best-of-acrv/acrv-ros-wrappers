@@ -1,11 +1,11 @@
 import importlib
 import re
 
-_services = {'refinenet': '.refinenet.RefineNet'}
+SERVICES = {'refinenet': '.refinenet.RefineNet'}
 
 
 def load_service(name, *args, **kwargs):
-    service_str = next((p for n, p in _services.items() if n == name), None)
+    service_str = next((p for n, p in SERVICES.items() if n == name), None)
     if not service_str:
         raise ValueError("Could not find a '%s' service to load. Please "
                          "confirm the name. Valid names are:\n\t%s" %
@@ -17,4 +17,4 @@ def load_service(name, *args, **kwargs):
 
 
 def service_list():
-    return list(_services.keys())
+    return list(SERVICES.keys())
