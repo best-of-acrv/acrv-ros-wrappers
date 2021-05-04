@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+
+import rospy
+import sys
+import textwrap
+
+from acrv_ros_wrappers.services import load_service, service_list
+
+
+def start_service(name):
+    print("Starting service '%s' ..." % name)
+    service = load_service(name)
+    print("\nLoaded a service with name '%s'" % service.name)
+
+
+if __name__ == "__main__":
+    rospy.init_node('acrv_wrappers_services')
+
+    # Pull in names, throwing an error if we didn't receive a list
+    names = rospy.get_param('~names', None)
+    if not names:
+        print(
+            textwrap.fill(
+                "No service names provided. Please use the 'names' param "
+                "to make a valid selection from this list:",
+                width=80))
+        for s in ['all'] + service_list():
+            print("\t%s" % s)
+        print(
+            '\n%s\n\t%s' %
+            (textwrap.fill(
+                "Select multiple by separating names with a comma, or 'all' "
+                "for all services. For example:",
+                width=80),
+             "rosrun acrv_ros_wrappers start_service _names:=refinenet,ggcnn"))
+        sys.exit(1)
+
+    # Process the names list, starting the services
+    names = names.split(',')
+    for s in (service_list() if 'all' in names else names):
+        start_service(s)
+    rospy.spin()

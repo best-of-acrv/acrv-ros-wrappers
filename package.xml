@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>acrv_ros_wrappers</name>
+  <version>0.1.0</version>
+  <description>The ROS wrappers for our Best of ACRV code repositories.</description>
+
+  <maintainer email="b.talbot@qut.edu.au">Ben Talbot</maintainer>
+
+  <license>BSD</license>
+
+    <!-- TODO update website when live! -->
+  <url type="website">https://roboticvision.org/best-of-acrv</url>
+  <url type="repository">https://github.com/best-of-acrv/acrv-ros-wrappers</url>
+
+  <author email="b.talbot@qut.edu.au">Ben Talbot</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+
+  <export>
+  </export>
+</package>
